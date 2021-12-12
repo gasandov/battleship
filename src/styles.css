@@ -1,7 +1,19 @@
 body {
-  font-family: "Edit Undo BRK", sans-serif;
   text-align: center;
   height: 100vh;
   background-image: url("https://opengameart.org/sites/default/files/Preview_143.png");
   background-repeat: space;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+input,
+button {
+  font-family: "Edit Undo BRK", sans-serif !important;
 }

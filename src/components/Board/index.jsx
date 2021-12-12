@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { GameContext } from "../../context/GameContext";
 import Cell from "./Cell";
 import {
   initializeShips,
@@ -13,6 +14,9 @@ export default function Board() {
   const [boardGame, setBoardGame] = useState([]);
   const [shipCells, setShipCells] = useState(0);
   const [ships, setShips] = useState([]);
+
+  const { difficulty } = useContext(GameContext);
+  const [turns, setTurns] = difficulty;
 
   useEffect(() => {
     const initBoard = initializeBoardGame(boardSize);
@@ -38,21 +42,27 @@ export default function Board() {
     board[cell.coordinates.x][cell.coordinates.y].isSelected = true;
 
     setBoardGame(board);
+    setTurns((currentTurns) => currentTurns - 1);
   };
 
   return (
     <div className="board">
-      {boardGame.map((row, xIndex) => (
-        <div key={`row-${xIndex}`}>
-          {row.map((cell, yIndex) => (
-            <Cell
-              key={`cell-${xIndex}-${yIndex}`}
-              onCellClicked={handleCellClicked}
-              cell={cell}
-            />
-          ))}
-        </div>
-      ))}
+      <div>Turns remaining: {isFinite(turns) ? turns : "Infinity"}</div>
+      {turns > 0 ? (
+        boardGame.map((row, xIndex) => (
+          <div key={`row-${xIndex}`}>
+            {row.map((cell, yIndex) => (
+              <Cell
+                key={`cell-${xIndex}-${yIndex}`}
+                onCellClicked={handleCellClicked}
+                cell={cell}
+              />
+            ))}
+          </div>
+        ))
+      ) : (
+        <p>Game Over</p>
+      )}
     </div>
   );
 }
