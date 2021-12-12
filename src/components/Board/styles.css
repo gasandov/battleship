@@ -1,0 +1,38 @@
+:root {
+  --cell-size: 2.2rem;
+  --ship-selected: #eb202c;
+  --ship-missed: #20b5eb;
+}
+
+.game-board {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.board {
+  display: inline-block;
+}
+
+.cell {
+  display: inline-block;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1px solid #360940;
+  background: #dfe3ee;
+  box-sizing: border-box;
+  vertical-align: bottom;
+}
+
+.cell:hover {
+  opacity: 0.7;
+}
+
+.ship {
+  background: var(--ship-selected);
+}
+
+.selected {
+  background: var(--ship-missed);
+}
