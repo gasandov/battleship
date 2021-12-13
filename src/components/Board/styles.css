@@ -1,18 +1,15 @@
 :root {
   --cell-size: 2.2rem;
+  --cell-info-size: 1rem;
   --ship-selected: #eb202c;
   --ship-missed: #20b5eb;
 }
 
-.game-board {
+.board {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-}
-
-.board {
-  display: inline-block;
 }
 
 .cell {
@@ -35,4 +32,17 @@
 
 .selected {
   background: var(--ship-missed);
+}
+
+.ship-block {
+  display: inline-block;
+  width: var(--cell-info-size);
+  height: var(--cell-info-size);
+  border: 1px solid #eee;
+  background: var(--ship-missed);
+  box-sizing: border-box;
+}
+
+.revealed {
+  background: var(--ship-selected);
 }
